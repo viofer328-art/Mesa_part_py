@@ -276,6 +276,19 @@ def listar_expedientes(expedientes):
     for exp in expedientes:
         mostrar_expediente(exp)
 
+def marcar_como_entregado(expedientes, numero):
+    """
+    Busca un expediente por número y cambia su estado a 'entregado',
+    simulando la firma de cargo que hace el solicitante al recibir
+    su documento.
+    """
+    exp = buscar_por_numero(expedientes, numero)
+    if exp is None:
+        return False
+    exp["estado"] = "entregado"
+    guardar_expedientes(expedientes)
+    return True
+
 def mostrar_menu():
     print("\n==========================================")
     print(" SISTEMA DE MESA DE PARTES")
