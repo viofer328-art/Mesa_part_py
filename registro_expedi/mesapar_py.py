@@ -83,6 +83,25 @@ def guardar_expedientes(expedientes):
         archivo.write(linea + "\n")
     archivo.close()
 
+def validar_texto_no_vacio(texto):
+    """Devuelve True si el texto tiene contenido real (no solo espacios)."""
+    return texto.strip() != ""
+
+
+def validar_dni(dni):
+    """
+    Un DNI peruano válido tiene 8 dígitos numéricos.
+    Según la entrevista, el DNI solo es obligatorio para certificados,
+    por eso esta función se usa condicionalmente, no siempre.
+    """
+    return dni.isdigit() and len(dni) == 8
+
+
+def validar_celular(celular):
+    """Un celular válido en Perú tiene 9 dígitos numéricos."""
+    return celular.isdigit() and len(celular) == 9
+
+
 
 def mostrar_menu():
     print("\n==========================================")
