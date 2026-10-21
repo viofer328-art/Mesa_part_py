@@ -1,18 +1,17 @@
 """
-==================================================================
- SISTEMA DE MESA DE PARTES DIGITAL
- Institución Educativa "Coronel Cortegana" - Celendín
- Curso: Fundamentos de Programación (CIIN1205P)
-==================================================================
- Este programa reemplaza el registro manual en cuaderno por un
- sistema digital que permite:
-   - Registrar expedientes (con validación de datos)
-   - Buscar expedientes (por número y por nombre)
-   - Ordenar expedientes (algoritmos de burbuja y selección)
-   - Marcar expedientes como entregados
-   - Guardar y recuperar todo desde un archivo de texto
-     (persistencia de datos - Tema 5)
-==================================================================
+- MODELO DE INTERFAZ PARA TERMINAL
+  MESCORT (Por MESa de partes y el colegio Coronel CORTegana)
+  ┌──────────────────────────────────────────────────────────────┐
+  │             SISTEMA DE MESA DE PARTES DIGITAL                │
+  │    Institución Educativa "Coronel Cortegana" - Celendín      │
+  └──────────────────────────────────────────────────────────────┘
+  ==============================================================═╗
+          [+] Registrar expedientes (con validación)
+          [?] Buscar expedientes (por número / nombre)
+          [↑↓] Ordenar expedientes (burbuja / selección)
+          [✓] Marcar expedientes como entregados
+          [⬡] Guardar y recuperar desde archivo de texto
+  ╚==============================================================
 """
 
 import os
@@ -25,14 +24,7 @@ TIPOS_TRAMITE_VALIDOS = [
     "tesoreria", "informe de salud", "apoyo"
 ]
 
-
-def cargar_expedientes():
-    """
-    Lee el archivo de texto y reconstruye la lista de expedientes.
-    Cada expediente se representa como un diccionario (registro),
-    para evitar el riesgo de desalineación de los arreglos paralelos.
-    Si el archivo no existe todavía, devuelve una lista vacía.
-    """
+def cargar_expedientes(): # Lee el archivo de texto y reconstruye la lista de expedientes.
     expedientes = []
 
     if not os.path.exists(ARCHIVO_DATOS):
@@ -64,11 +56,7 @@ def cargar_expedientes():
     return expedientes
 
 
-def guardar_expedientes(expedientes):
-    """
-    Escribe TODA la lista de expedientes en el archivo de texto,
-    un expediente por línea, con los campos unidos por SEPARADOR.
-    """
+def guardar_expedientes(expedientes): # Escribe TODA la lista de expedientes en el archivo de texto.
     archivo = open(ARCHIVO_DATOS, "w", encoding="utf-8")
     for exp in expedientes:
         linea = SEPARADOR.join([
@@ -86,40 +74,25 @@ def guardar_expedientes(expedientes):
     archivo.close()
 
 
-def validar_texto_no_vacio(texto):
-    """Devuelve True si el texto tiene contenido real (no solo espacios)."""
+def validar_texto_no_vacio(texto): #Devuelve True si el texto tiene contenido real (no solo espacios).
     return texto.strip() != ""
 
 
-def validar_dni(dni):
-    """
-    Un DNI peruano válido tiene 8 dígitos numéricos.
-    Según la entrevista, el DNI solo es obligatorio para certificados,
-    por eso esta función se usa condicionalmente, no siempre.
-    """
+def validar_dni(dni): #El DNI solo es obligatorio para certificados, por eso esta función se usa condicionalmente, no siempre.
     return dni.isdigit() and len(dni) == 8
 
-def validar_celular(celular):
-    """Un celular válido en Perú tiene 9 dígitos numéricos."""
+def validar_celular(celular): #Un celular válido en Perú tiene 9 dígitos numéricos.
     return celular.isdigit() and len(celular) == 9
 
 
-def obtener_siguiente_numero(expedientes):
-    """
-    Calcula el siguiente número de expediente correlativo,
-    igual que en el cuaderno físico de la secretaria.
-    """
+def obtener_siguiente_numero(expedientes): # Calcula el siguiente número de expediente correlativo como el cuaderno de la secretaria.
     if len(expedientes) == 0:
         return 1
     numeros = [exp["numero"] for exp in expedientes]
     return max(numeros) + 1
 
 
-def registrar_expediente(expedientes):
-    """
-    Pide los datos de un nuevo trámite, los valida y agrega
-    el nuevo expediente a la lista (arreglo de registros).
-    """
+def registrar_expediente(expedientes): # Pide los datos de un nuevo trámite, los valida y agrega el nuevo expediente a la lista.
     print("\n--- REGISTRAR NUEVO EXPEDIENTE ---")
 
     nombre = input("Nombre completo del solicitante: ").strip()
@@ -180,8 +153,7 @@ def registrar_expediente(expedientes):
 
     print(f"\nExpediente registrado con éxito. N° de expediente: {numero}")
 
-def mostrar_expediente(exp):
-    """Imprime en pantalla los datos de un solo expediente."""
+def mostrar_expediente(exp): #Imprime en pantalla los datos de un solo expediente.
     print("-" * 50)
     print(f"N° Expediente : {exp['numero']}")
     print(f"Solicitante   : {exp['nombre']}")
@@ -194,23 +166,13 @@ def mostrar_expediente(exp):
     print(f"Estado        : {exp['estado']}")
     print("-" * 50)
 
-def buscar_por_numero(expedientes, numero):
-    """
-    Búsqueda lineal por número de expediente (Tema 3: búsqueda en arreglos).
-    Devuelve el expediente encontrado o None si no existe.
-    """
+def buscar_por_numero(expedientes, numero): # Búsqueda por número de expediente
     for exp in expedientes:
         if exp["numero"] == numero:
             return exp
     return None
 
-
-def buscar_por_nombre(expedientes, texto_buscado):
-    """
-    Búsqueda lineal por coincidencia parcial de nombre (Tema 4: cadenas).
-    Devuelve una lista con todas las coincidencias (puede haber varias
-    personas con nombres parecidos).
-    """
+def buscar_por_nombre(expedientes, texto_buscado): # Búsqueda por coincidencia parcial de nombre.
     resultados = []
     texto_buscado = texto_buscado.lower()
     for exp in expedientes:
@@ -218,12 +180,7 @@ def buscar_por_nombre(expedientes, texto_buscado):
             resultados.append(exp)
     return resultados
 
-def ordenar_por_fecha_burbuja(expedientes):
-    """
-    Algoritmo de ordenamiento BURBUJA (Tema 3), que ordena los
-    expedientes por fecha de ingreso (de la más antigua a la más
-    reciente), asumiendo formato DD/MM/AAAA.
-    """
+def ordenar_por_fecha_burbuja(expedientes): # Algoritmo de ordenamiento BURBUJA, que ordena los expedientes por fecha de ingreso.
     lista = expedientes.copy()
     n = len(lista)
 
@@ -238,11 +195,7 @@ def ordenar_por_fecha_burbuja(expedientes):
 
     return lista
 
-def ordenar_por_numero_seleccion(expedientes):
-    """
-    Algoritmo de ordenamiento por SELECCIÓN (Tema 3), que ordena
-    los expedientes por número de expediente de forma ascendente.
-    """
+def ordenar_por_numero_seleccion(expedientes): # Algoritmo de ordenamiento por SELECCIÓN, que ordena los expedientes por número.
     lista = expedientes.copy()
     n = len(lista)
 
@@ -256,8 +209,7 @@ def ordenar_por_numero_seleccion(expedientes):
 
     return lista
 
-def listar_expedientes(expedientes):
-    """Muestra todos los expedientes registrados."""
+def listar_expedientes(expedientes): # Muestra todos los expedientes registrados
     if len(expedientes) == 0:
         print("\nNo hay expedientes registrados todavía.")
         return
@@ -266,12 +218,7 @@ def listar_expedientes(expedientes):
     for exp in expedientes:
         mostrar_expediente(exp)
 
-def marcar_como_entregado(expedientes, numero):
-    """
-    Busca un expediente por número y cambia su estado a 'entregado',
-    simulando la firma de cargo que hace el solicitante al recibir
-    su documento.
-    """
+def marcar_como_entregado(expedientes, numero):# Marca un expediente como entregado
     exp = buscar_por_numero(expedientes, numero)
     if exp is None:
         return False
@@ -279,20 +226,27 @@ def marcar_como_entregado(expedientes, numero):
     guardar_expedientes(expedientes)
     return True
 
-def mostrar_menu():
-    print("\n==========================================")
-    print(" SISTEMA DE MESA DE PARTES")
-    print(" I.E. Coronel Cortegana - Celendín")
-    print("==========================================")
-    print("1. Registrar nuevo expediente")
-    print("2. Buscar expediente por número")
-    print("3. Buscar expediente por nombre")
-    print("4. Listar todos los expedientes")
-    print("5. Ordenar expedientes por fecha (burbuja)")
-    print("6. Ordenar expedientes por número (selección)")
-    print("7. Marcar expediente como entregado")
-    print("8. Salir")
-    print("==========================================")
+def mostrar_menu(): #Diseño de la interfaz de menú principal con arte ASCII.
+    print(r"")
+    print(r"███╗   ███╗███████╗███████╗ ██████╗  ██████╗ ██████╗ ████████╗")
+    print(r"████╗ ████║██╔════╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗╚══██╔══╝")
+    print(r"██╔████╔██║█████╗  ███████╗██║      ██║   ██║██████╔╝   ██║   ")
+    print(r"██║╚██╔╝██║██╔══╝  ╚════██║██║      ██║   ██║██╔══██╗   ██║   ")
+    print(r"██║ ╚═╝ ██║███████╗███████║╚██████╗ ╚██████╔╝██║  ██║   ██║   ")
+    print(r"╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ")
+    print(r"")
+    print(r"┌──────────────────────────────────────────────────────────────┐")
+    print(r"│              SISTEMA DE MESA DE PARTES DIGITAL               │")
+    print(r"│      Institución Educativa ""Coronel Cortegana"" - Celendín  ⯏   │")
+    print(r"└──────────────────────────────────────────────────────────────┘")
+    print(r"")
+    print(r"𒋲═══════════════════════════════════════════════════════════╗")
+    print(r"     ★ [ + ] 1. Registrar expedientes                        ")
+    print(r"     ★ [ ? ] 2. Buscar expedientes                           ")
+    print(r"     ★ [↑ ↓] 3. Ordenar expedientes                         ")
+    print(r"     ★ [ ✓ ] 4. Marcar expedientes como entregados           ")
+    print(r"     ★ [ ⬡ ] 5. Guardar y recuperar desde archivo de texto   ")
+    print(r"╚═══════════════════════════════════════════════════════════𒋲")
 
 
 def main():
