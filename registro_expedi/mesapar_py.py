@@ -190,6 +190,19 @@ def registrar_expediente(expedientes):
 =======
 >>>>>>> b846383500f034e2a8f1de4f6bb94348eeea85f5
 
+def mostrar_expediente(exp):
+    """Imprime en pantalla los datos de un solo expediente."""
+    print("-" * 50)
+    print(f"N° Expediente : {exp['numero']}")
+    print(f"Solicitante   : {exp['nombre']}")
+    print(f"DNI           : {exp['dni'] if exp['dni'] else '(no registrado)'}")
+    print(f"Tipo trámite  : {exp['tipo_tramite']}")
+    print(f"Fecha ingreso : {exp['fecha']}")
+    print(f"Celular       : {exp['celular']}")
+    print(f"Correo        : {exp['correo'] if exp['correo'] else '(no registrado)'}")
+    print(f"Descripción   : {exp['descripcion']}")
+    print(f"Estado        : {exp['estado']}")
+    print("-" * 50)
 
 def mostrar_menu():
     print("\n==========================================")
