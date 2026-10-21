@@ -266,6 +266,16 @@ def ordenar_por_numero_seleccion(expedientes):
 
     return lista
 
+def listar_expedientes(expedientes):
+    """Muestra todos los expedientes registrados."""
+    if len(expedientes) == 0:
+        print("\nNo hay expedientes registrados todavía.")
+        return
+
+    print(f"\n--- LISTADO DE EXPEDIENTES ({len(expedientes)} en total) ---")
+    for exp in expedientes:
+        mostrar_expediente(exp)
+
 def mostrar_menu():
     print("\n==========================================")
     print(" SISTEMA DE MESA DE PARTES")
