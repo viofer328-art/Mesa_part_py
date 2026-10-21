@@ -228,6 +228,26 @@ def buscar_por_nombre(expedientes, texto_buscado):
             resultados.append(exp)
     return resultados
 
+def ordenar_por_fecha_burbuja(expedientes):
+    """
+    Algoritmo de ordenamiento BURBUJA (Tema 3), que ordena los
+    expedientes por fecha de ingreso (de la más antigua a la más
+    reciente), asumiendo formato DD/MM/AAAA.
+    """
+    lista = expedientes.copy()  # no modifica el original directamente
+    n = len(lista)
+
+    def clave_fecha(exp):
+        dia, mes, anio = exp["fecha"].split("/")
+        return anio + mes + dia  # permite comparar como texto ordenable
+
+    for i in range(n - 1):
+        for j in range(n - 1 - i):
+            if clave_fecha(lista[j]) > clave_fecha(lista[j + 1]):
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]  # intercambio
+
+    return lista
+
 def mostrar_menu():
     print("\n==========================================")
     print(" SISTEMA DE MESA DE PARTES")
