@@ -62,6 +62,26 @@ def cargar_expedientes():
 
     return expedientes
 
+def guardar_expedientes(expedientes):
+    """
+    Escribe TODA la lista de expedientes en el archivo de texto,
+    un expediente por línea, con los campos unidos por SEPARADOR.
+    """
+    archivo = open(ARCHIVO_DATOS, "w", encoding="utf-8")
+    for exp in expedientes:
+        linea = SEPARADOR.join([
+            str(exp["numero"]),
+            exp["nombre"],
+            exp["dni"],
+            exp["tipo_tramite"],
+            exp["fecha"],
+            exp["celular"],
+            exp["correo"],
+            exp["descripcion"],
+            exp["estado"]
+        ])
+        archivo.write(linea + "\n")
+    archivo.close()
 
 
 def mostrar_menu():
