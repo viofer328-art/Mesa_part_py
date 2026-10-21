@@ -204,6 +204,30 @@ def mostrar_expediente(exp):
     print(f"Estado        : {exp['estado']}")
     print("-" * 50)
 
+def buscar_por_numero(expedientes, numero):
+    """
+    Búsqueda lineal por número de expediente (Tema 3: búsqueda en arreglos).
+    Devuelve el expediente encontrado o None si no existe.
+    """
+    for exp in expedientes:
+        if exp["numero"] == numero:
+            return exp
+    return None
+
+
+def buscar_por_nombre(expedientes, texto_buscado):
+    """
+    Búsqueda lineal por coincidencia parcial de nombre (Tema 4: cadenas).
+    Devuelve una lista con todas las coincidencias (puede haber varias
+    personas con nombres parecidos).
+    """
+    resultados = []
+    texto_buscado = texto_buscado.lower()
+    for exp in expedientes:
+        if texto_buscado in exp["nombre"].lower():
+            resultados.append(exp)
+    return resultados
+
 def mostrar_menu():
     print("\n==========================================")
     print(" SISTEMA DE MESA DE PARTES")
