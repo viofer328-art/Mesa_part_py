@@ -17,23 +17,15 @@
 
 import os
 
-<<<<<<< HEAD
 ARCHIVO_DATOS = "expedientes.txt"
-SEPARADOR = "|"
-=======
-# ------------------------------------------------------------
-# CONSTANTES GLOBALES
-# ------------------------------------------------------------
-ARCHIVO_DATOS = "expedientes.txt"
-SEPARADOR = "|"   # separador de campos dentro del archivo de texto
->>>>>>> b846383500f034e2a8f1de4f6bb94348eeea85f5
+SEPARADOR = "|" 
 
 TIPOS_TRAMITE_VALIDOS = [
     "certificado", "permiso", "reclamo", "comunicacion",
     "tesoreria", "informe de salud", "apoyo"
 ]
 
-<<<<<<< HEAD
+
 def cargar_expedientes():
     """
     Lee el archivo de texto y reconstruye la lista de expedientes.
@@ -187,8 +179,6 @@ def registrar_expediente(expedientes):
     guardar_expedientes(expedientes)
 
     print(f"\nExpediente registrado con éxito. N° de expediente: {numero}")
-=======
->>>>>>> b846383500f034e2a8f1de4f6bb94348eeea85f5
 
 def mostrar_expediente(exp):
     """Imprime en pantalla los datos de un solo expediente."""
