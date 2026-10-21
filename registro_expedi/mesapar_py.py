@@ -62,6 +62,7 @@ def cargar_expedientes():
 
     return expedientes
 
+
 def guardar_expedientes(expedientes):
     """
     Escribe TODA la lista de expedientes en el archivo de texto,
@@ -83,6 +84,7 @@ def guardar_expedientes(expedientes):
         archivo.write(linea + "\n")
     archivo.close()
 
+
 def validar_texto_no_vacio(texto):
     """Devuelve True si el texto tiene contenido real (no solo espacios)."""
     return texto.strip() != ""
@@ -96,10 +98,10 @@ def validar_dni(dni):
     """
     return dni.isdigit() and len(dni) == 8
 
-
 def validar_celular(celular):
     """Un celular válido en Perú tiene 9 dígitos numéricos."""
     return celular.isdigit() and len(celular) == 9
+
 
 def obtener_siguiente_numero(expedientes):
     """
@@ -111,6 +113,71 @@ def obtener_siguiente_numero(expedientes):
     numeros = [exp["numero"] for exp in expedientes]
     return max(numeros) + 1
 
+
+def registrar_expediente(expedientes):
+    """
+    Pide los datos de un nuevo trámite, los valida y agrega
+    el nuevo expediente a la lista (arreglo de registros).
+    """
+    print("\n--- REGISTRAR NUEVO EXPEDIENTE ---")
+
+    nombre = input("Nombre completo del solicitante: ").strip()
+    while not validar_texto_no_vacio(nombre):
+        print("El nombre no puede estar vacío.")
+        nombre = input("Nombre completo del solicitante: ").strip()
+
+    print("Tipos de trámite disponibles:", ", ".join(TIPOS_TRAMITE_VALIDOS))
+    tipo_tramite = input("Tipo de trámite: ").strip().lower()
+    while tipo_tramite not in TIPOS_TRAMITE_VALIDOS:
+        print("Tipo de trámite no reconocido. Intente nuevamente.")
+        tipo_tramite = input("Tipo de trámite: ").strip().lower()
+
+    if tipo_tramite == "certificado":
+        dni = input("DNI del solicitante (8 dígitos, requerido para certificados): ").strip()
+
+        while not validar_dni(dni):
+            print("DNI inválido. Debe tener 8 dígitos numéricos.")
+            dni = input("DNI del solicitante: ").strip()
+    else:
+        dni = input("DNI del solicitante (opcional, Enter para omitir): ").strip()
+        if dni != "" and not validar_dni(dni):
+            print("Aviso: el DNI ingresado no tiene el formato correcto, se guardará igual.")
+
+    fecha = input("Fecha de ingreso (DD/MM/AAAA): ").strip()
+    while not validar_texto_no_vacio(fecha):
+        print("La fecha no puede estar vacía.")
+        fecha = input("Fecha de ingreso (DD/MM/AAAA): ").strip()
+
+    celular = input("Número de celular (9 dígitos): ").strip()
+    while not validar_celular(celular):
+        print("Celular inválido. Debe tener 9 dígitos numéricos.")
+        celular = input("Número de celular: ").strip()
+
+    correo = input("Correo electrónico (opcional): ").strip()
+
+    descripcion = input("Descripción del pedido/asunto: ").strip()
+    while not validar_texto_no_vacio(descripcion):
+        print("La descripción no puede estar vacía.")
+        descripcion = input("Descripción del pedido/asunto: ").strip()
+
+    numero = obtener_siguiente_numero(expedientes)
+
+    nuevo_expediente = {
+        "numero": numero,
+        "nombre": nombre,
+        "dni": dni,
+        "tipo_tramite": tipo_tramite,
+        "fecha": fecha,
+        "celular": celular,
+        "correo": correo,
+        "descripcion": descripcion,
+        "estado": "registrado"
+    }
+
+    expedientes.append(nuevo_expediente)
+    guardar_expedientes(expedientes)
+
+    print(f"\nExpediente registrado con éxito. N° de expediente: {numero}")
 
 
 def mostrar_menu():
