@@ -303,3 +303,71 @@ def mostrar_menu():
     print("7. Marcar expediente como entregado")
     print("8. Salir")
     print("==========================================")
+
+
+def main():
+    expedientes = cargar_expedientes()  # se cargan los datos guardados previamente
+    opcion = ""
+
+    while opcion != "8":
+        mostrar_menu()
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == "1":
+            registrar_expediente(expedientes)
+
+        elif opcion == "2":
+            try:
+                numero = int(input("Ingrese el número de expediente: "))
+            except ValueError:
+                print("Debe ingresar un número válido.")
+                continue
+            resultado = buscar_por_numero(expedientes, numero)
+            if resultado is None:
+                print("No se encontró ningún expediente con ese número.")
+            else:
+                mostrar_expediente(resultado)
+
+        elif opcion == "3":
+            texto = input("Ingrese el nombre (o parte de él): ")
+            resultados = buscar_por_nombre(expedientes, texto)
+            if len(resultados) == 0:
+                print("No se encontraron expedientes con ese nombre.")
+            else:
+                print(f"\nSe encontraron {len(resultados)} expediente(s):")
+                for exp in resultados:
+                    mostrar_expediente(exp)
+
+        elif opcion == "4":
+            listar_expedientes(expedientes)
+
+        elif opcion == "5":
+            ordenados = ordenar_por_fecha_burbuja(expedientes)
+            print("\nExpedientes ordenados por fecha (más antiguo primero):")
+            listar_expedientes(ordenados)
+
+        elif opcion == "6":
+            ordenados = ordenar_por_numero_seleccion(expedientes)
+            print("\nExpedientes ordenados por número:")
+            listar_expedientes(ordenados)
+
+        elif opcion == "7":
+            try:
+                numero = int(input("Ingrese el número de expediente a marcar como entregado: "))
+            except ValueError:
+                print("Debe ingresar un número válido.")
+                continue
+            if marcar_como_entregado(expedientes, numero):
+                print("Expediente marcado como entregado.")
+            else:
+                print("No se encontró ningún expediente con ese número.")
+
+        elif opcion == "8":
+            print("\nSaliendo del sistema. ¡Hasta pronto!")
+
+        else:
+            print("Opción no válida, intente nuevamente.")
+
+
+if __name__ == "__main__":
+    main()
