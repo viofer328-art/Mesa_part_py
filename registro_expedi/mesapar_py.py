@@ -11,6 +11,11 @@
           [↑↓] Ordenar expedientes (burbuja / selección)
           [✓] Marcar expedientes como entregados
           [⬡] Guardar y recuperar desde archivo de texto
+          [ ✓ ] 4. Listar expedientes                          
+          [↑ ↓] 5. Ordenar expedientes por fecha                
+          [↑ ↓] 6. Ordenar expedientes por número               
+          [ ✓ ] 7. Marcar expediente como entregado            
+          [ ✕ ] 8. Salir     
   ╚==============================================================
 """
 
@@ -244,9 +249,12 @@ def mostrar_menu(): #Diseño de la interfaz de menú principal con arte ASCII.
     print(r"     ★ [ + ] 1. Registrar expedientes                        ")
     print(r"     ★ [ ? ] 2. Buscar expedientes                           ")
     print(r"     ★ [↑ ↓] 3. Ordenar expedientes                         ")
-    print(r"     ★ [ ✓ ] 4. Marcar expedientes como entregados           ")
-    print(r"     ★ [ ⬡ ] 5. Guardar y recuperar desde archivo de texto   ")
-    print(r"╚═══════════════════════════════════════════════════════════𒋲")
+    print(r"     ★ [ ✓ ] 4. Listar expedientes                          ")
+    print(r"     ★ [↑ ↓] 5. Ordenar expedientes por fecha                ")
+    print(r"     ★ [↑ ↓] 6. Ordenar expedientes por número                 ")
+    print(r"     ★ [ ✓ ] 7. Marcar expediente como entregado             ")
+    print(r"     ★ [ ✕ ] 8. Salir                                        ")
+    print(r"╚══════════════════════════════════════════════════════════𒋲")
 
 
 def main():
