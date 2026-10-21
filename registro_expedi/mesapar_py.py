@@ -224,17 +224,17 @@ def ordenar_por_fecha_burbuja(expedientes):
     expedientes por fecha de ingreso (de la más antigua a la más
     reciente), asumiendo formato DD/MM/AAAA.
     """
-    lista = expedientes.copy()  # no modifica el original directamente
+    lista = expedientes.copy()
     n = len(lista)
 
     def clave_fecha(exp):
         dia, mes, anio = exp["fecha"].split("/")
-        return anio + mes + dia  # permite comparar como texto ordenable
+        return anio + mes + dia
 
     for i in range(n - 1):
         for j in range(n - 1 - i):
             if clave_fecha(lista[j]) > clave_fecha(lista[j + 1]):
-                lista[j], lista[j + 1] = lista[j + 1], lista[j]  # intercambio
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
 
     return lista
 
@@ -296,7 +296,7 @@ def mostrar_menu():
 
 
 def main():
-    expedientes = cargar_expedientes()  # se cargan los datos guardados previamente
+    expedientes = cargar_expedientes()
     opcion = ""
 
     while opcion != "8":
