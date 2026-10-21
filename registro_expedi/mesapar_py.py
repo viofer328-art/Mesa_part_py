@@ -101,6 +101,16 @@ def validar_celular(celular):
     """Un celular válido en Perú tiene 9 dígitos numéricos."""
     return celular.isdigit() and len(celular) == 9
 
+def obtener_siguiente_numero(expedientes):
+    """
+    Calcula el siguiente número de expediente correlativo,
+    igual que en el cuaderno físico de la secretaria.
+    """
+    if len(expedientes) == 0:
+        return 1
+    numeros = [exp["numero"] for exp in expedientes]
+    return max(numeros) + 1
+
 
 
 def mostrar_menu():
