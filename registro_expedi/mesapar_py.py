@@ -248,6 +248,24 @@ def ordenar_por_fecha_burbuja(expedientes):
 
     return lista
 
+def ordenar_por_numero_seleccion(expedientes):
+    """
+    Algoritmo de ordenamiento por SELECCIÓN (Tema 3), que ordena
+    los expedientes por número de expediente de forma ascendente.
+    """
+    lista = expedientes.copy()
+    n = len(lista)
+
+    for i in range(n - 1):
+        indice_menor = i
+        for j in range(i + 1, n):
+            if lista[j]["numero"] < lista[indice_menor]["numero"]:
+                indice_menor = j
+        if indice_menor != i:
+            lista[i], lista[indice_menor] = lista[indice_menor], lista[i]
+
+    return lista
+
 def mostrar_menu():
     print("\n==========================================")
     print(" SISTEMA DE MESA DE PARTES")
