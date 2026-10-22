@@ -6,13 +6,13 @@
   │    Institución Educativa "Coronel Cortegana" - Celendín      │
   └──────────────────────────────────────────────────────────────┘
   ==============================================================═╗
-          [+] Registrar expedientes (con validación)
-          [?] Buscar expedientes (por número / nombre)
-          [↑↓] Ordenar expedientes (burbuja / selección)
-          [✓] Marcar expedientes como entregados
-          [⬡] Guardar y recuperar desde archivo de texto
-          [ ✓ ] 4. Listar expedientes                          
-          [↑ ↓] 5. Ordenar expedientes por fecha                
+          [+] 1. Registrar expedientes (con validación)
+          [?] 2. Buscar expedientes por número
+          [↑↓] 3. Buscar expedientes por nombre
+          [✓] 4. Marcar expedientes como entregados
+          [⬡] 5. Guardar y recuperar desde archivo de texto
+          [ ✓ ] 6. Listar expedientes                          
+          [↑ ↓] 7. Ordenar expedientes por fecha                
           [↑ ↓] 6. Ordenar expedientes por número               
           [ ✓ ] 7. Marcar expediente como entregado            
           [ ✕ ] 8. Salir     
@@ -247,8 +247,8 @@ def mostrar_menu(): #Diseño de la interfaz de menú principal con arte ASCII.
     print(r"")
     print(r"𒋲═══════════════════════════════════════════════════════════╗")
     print(r"     ★ [ + ] 1. Registrar expedientes                        ")
-    print(r"     ★ [ ? ] 2. Buscar expedientes                           ")
-    print(r"     ★ [↑ ↓] 3. Ordenar expedientes                         ")
+    print(r"     ★ [ ? ] 2. Buscar expedientes por número                ")
+    print(r"     ★ [↑ ↓] 3. Buscar expedientes por nombre               ")
     print(r"     ★ [ ✓ ] 4. Listar expedientes                          ")
     print(r"     ★ [↑ ↓] 5. Ordenar expedientes por fecha                ")
     print(r"     ★ [↑ ↓] 6. Ordenar expedientes por número                 ")
