@@ -1,1 +1,3 @@
 1|Juan Rios|12345678|permiso|11/12/2025|987654321|juanri@gmail.com|Permiso para el día 16/12/2025 por cita médica.|registrado
+2|Carlos Ruiz||apoyo|13/11/2026|999888777||apoyo para evento|registrado
+3|Ana Gomez|47080335|comunicacion|13/11/2026|987654321||solicitud de reunion|registrado
