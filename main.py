@@ -20,7 +20,7 @@ from controllers.storage import cargar_expedientes
 def mostrar_menu():
     print("\n")
     print("╔══════════════════════════════════════════════════════════════╗")
-    print("║             SISTEMA DE MESA DE PARTES DIGITAL               ║")
+    print("║             SISTEMA DE MESA DE PARTES DIGITAL                ║")
     print("║       Institución Educativa 'Coronel Cortegana'              ║")
     print("╠══════════════════════════════════════════════════════════════╣")
     print("║  1. Registrar expediente                                     ║")
