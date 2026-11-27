@@ -1,4 +1,5 @@
-from controllers.config import TOTAL_OPERACIONES, registrar_operacion
+import controllers.config as config
+from controllers.config import registrar_operacion
 from controllers.expedientes import (
     actualizar_expediente,
     buscar_por_nombre,
@@ -126,7 +127,7 @@ def main():
 
         elif opcion == "10":
             print("\nSaliendo del sistema...")
-            print(f"Operaciones realizadas durante esta sesión: {TOTAL_OPERACIONES}")
+            print(f"Operaciones realizadas durante esta sesión: {config.TOTAL_OPERACIONES}")
             print("Los datos guardados se conservarán para la próxima ejecución.")
             print("¡Hasta pronto!")
 

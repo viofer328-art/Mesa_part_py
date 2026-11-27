@@ -133,7 +133,7 @@ def leer_ultimo_numero():
     if not os.path.exists(ARCHIVO_SECUENCIA):
         if os.path.exists(ARCHIVO_RESPALDO):
             try:
-                from storage import _leer_respaldo
+                from controllers.storage import _leer_respaldo
                 return _leer_respaldo()[1]
             except (OSError, UnicodeDecodeError, json.JSONDecodeError,
                     ValueError, TypeError) as error:
